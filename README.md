@@ -1,7 +1,7 @@
 solipCysme
 ==========
 
-[spaCy](https://spacy.io/) [pipeline](https://spacy.io/usage/processing-pipelines) for french, with a focus on personnal pronouns and fictional texts (or with first person point of view).
+[spaCy](https://spacy.io/) [pipeline](https://spacy.io/usage/processing-pipelines) for french, with a focus on personal pronouns, fictions and  first person point of view texts.
 
 | Feature | Description |
 | --- | --- |
