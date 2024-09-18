@@ -1,12 +1,12 @@
 solipCysme
 ==========
 
-[spaCy](https://spacy.io/) [pipeline](https://spacy.io/usage/processing-pipelines) for french focused on personal pronouns, fictions and  first person point of view texts.
+[spaCy](https://spacy.io/) [pipeline](https://spacy.io/usage/processing-pipelines) for french fictions or first person point of view texts (with a focus on personal pronouns).
 
 | Feature | Description |
 | --- | --- |
 | **Language** | french |
-| **Name** | `solipCysme` |
+| **Name** | `fr_solipcysme` |
 | **Version** | `3.7.0` |
 | **spaCy** | `>=3.7.6,<3.8.0` |
 | **Default Pipeline** | `presque_normalizer`, `tokentype`, `morphologizer`, `viceverser_lemmatizer`, `sentencizer`, `parser` |
@@ -20,6 +20,10 @@ installation
 ------------
 
 ```bash
+# from huggingface (recommanded)
+pip install https://huggingface.co/thjbdvlt/fr_solipcysme/resolve/main/fr_solipcysme-any-py3-none-any.whl
+
+# from github release
 pip install https://github.com/thjbdvlt/solipCysme/releases/download/solipCysme-v3.7.0/fr_solipcysme-3.7.0-py3-none-any.whl
 ```
 
@@ -30,4 +34,19 @@ usage
 import spacy
 
 nlp = spacy.load("fr_solipcysme")
+
+for i in nlp(
+    "la MACHINE à (b)rouiller le temps s'est peuuut-etre déraillée..?"
+):
+    print(
+        i, 
+        i.norm_, 
+        i.pos_, 
+        i.morph, 
+        i.lemma_, 
+        i.dep_, 
+        i._.tokentype,
+        i._.vv_pos,
+        i._.vv_morph
+    )
 ```
