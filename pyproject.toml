@@ -1,0 +1,32 @@
+[project]
+name = "solipCysme"
+authors = [{name="thjbdvlt"}]
+version = "0.1.0"
+description = "spaCy pipeline for french, with a focus on personnal pronouns and fictional texts (or with first person point of view)."
+readme = "README.md"
+requires-python = ">=3.8"
+dependencies = [
+    "quelquhui @ git+https://github.com/thjbdvlt/quelquhui",
+    "presque @ git+https://github.com/thjbdvlt/spacy-presque",
+    "viceverser @ git+https://github.com/thjbdvlt/spacy-viceverser",
+    "tokentype @ git+https://github.com/thjbdvlt/spacy-tokentype",
+]
+
+[project.urls]
+Homepage = "https://github.com/thjbdvlt/solipCysme"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.ruff]
+exclude = []
+line-length = 70
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = false
