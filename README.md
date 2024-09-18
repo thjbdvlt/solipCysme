@@ -29,5 +29,5 @@ usage
 ```python
 import spacy
 
-nlp = spacy.load("")
+nlp = spacy.load("fr_solipcysme")
 ```
