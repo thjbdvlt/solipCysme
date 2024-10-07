@@ -20,11 +20,11 @@ installation
 ------------
 
 ```bash
-# from huggingface (recommanded)
-pip install https://huggingface.co/thjbdvlt/fr_solipcysme/resolve/main/fr_solipcysme-any-py3-none-any.whl
-
 # from github release
 pip install https://github.com/thjbdvlt/solipCysme/releases/download/solipCysme-v3.7.0/fr_solipcysme-3.7.0-py3-none-any.whl
+
+# from huggingface
+pip install https://huggingface.co/thjbdvlt/fr_solipcysme/resolve/main/fr_solipcysme-any-py3-none-any.whl
 ```
 
 usage
