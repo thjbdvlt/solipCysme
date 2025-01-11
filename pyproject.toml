@@ -1,0 +1,39 @@
+[project]
+name = "solipcysme"
+authors = [{name="thjbdvlt"}]
+version = "0.1.0"
+description = "spaCy pipeline for fictional and first person point-of-view texts in french."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "spacy",
+    "jusqucy @git+https://github.com/thjbdvlt/jusqucy",
+    "commecy @git+https://github.com/thjbdvlt/commecy",
+    "viceverser @git+https://github.com/thjbdvlt/spacy-viceverser",
+]
+
+[project.urls]
+Homepage = "https://github.com/thjbdvlt/solipcysme"
+
+[project.entry-points.spacy_architectures]
+SolipcysmeCharEmbed = "solipcysme.char_embed:SolipcysmeCharEmbed"
+SolipcysmeMultiHash = "solipcysme.multi_hash:SolipcysmeMultiHash"
+
+[build-system]
+requires = ["setuptools>=74.1", "cython", "spacy", "numpy"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+py-modules = ["solipcysme"]
+
+[tool.setuptools.packages]
+find = {}
+
+[tool.ruff]
+exclude = []
+line-length = 72
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+docstring-code-format = false
