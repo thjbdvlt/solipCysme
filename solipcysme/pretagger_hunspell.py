@@ -113,10 +113,12 @@ class PreTagger:
             self.hs = hunspell.HunSpell(dic, aff)
             for file in add_dics:
                 self.add_dic(file)
+            self.add_exts(ext_names, prefixes)
 
         except hunspell.HunSpellError:
             self.hs = None
 
+    def add_exts(self, ext_names, prefixes):
         for name, pattern in zip(ext_names, prefixes):
             Doc.set_extension(
                 name,
@@ -130,13 +132,19 @@ class PreTagger:
         return doc
 
     def _get_fp(self, path):
-        config = self._nlp.config["components"][self.name]
-        return [path / os.path.basename(config[i]) for i in ('dic', 'aff')]
+        config = self.config
+        return [
+            path / os.path.basename(config[i]) for i in ("dic", "aff")
+        ]
+
+    @property
+    def config(self):
+        return self._nlp.config["components"][self.name]
 
     def to_disk(self, path, *, exclude=tuple(), **kwargs):
         """Save the PreTagger to disk."""
 
-        config = self._nlp.config["components"][self.name]
+        config = self.config
 
         path = ensure_path(path)
         if not path.exists():
@@ -164,9 +172,11 @@ class PreTagger:
     def from_disk(self, path, *args, exclude=tuple(), **kwargs):
         """Load a Pretagger from disk."""
 
-        if not self.hs:
-            path_dic, path_aff = self._get_fp(path)
-            self.hs = hunspell.Hunspell(path_dic, path_aff)
+        path_dic, path_aff = self._get_fp(path)
+        self.hs = hunspell.HunSpell(path_dic, path_aff)
+        config = self.config
+        self.add_exts(config["ext_names"], config["prefixes"])
+        return self
 
 
 @Language.factory(

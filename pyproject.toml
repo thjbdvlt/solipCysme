@@ -7,13 +7,16 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "spacy",
-    "jusqucy @git+https://github.com/thjbdvlt/jusqucy",
+    "jusqucy @git+https://github.com/thjbdvlt/jusquci",
     "commecy @git+https://github.com/thjbdvlt/commecy",
     "viceverser @git+https://github.com/thjbdvlt/spacy-viceverser",
 ]
 
 [project.urls]
 Homepage = "https://github.com/thjbdvlt/solipcysme"
+
+[project.entry-points.spacy_factories]
+pretagger_hunspell = "solipcysme.pretagger_hunspell:PreTagger"
 
 [project.entry-points.spacy_architectures]
 SolipcysmeCharEmbed = "solipcysme.char_embed:SolipcysmeCharEmbed"
