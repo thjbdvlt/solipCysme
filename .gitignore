@@ -7,3 +7,4 @@ fr_solipcysme-*
 model*
 test.py
 venv
+*.whl

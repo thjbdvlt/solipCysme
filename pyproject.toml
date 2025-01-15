@@ -2,7 +2,7 @@
 name = "solipcysme"
 authors = [{name="thjbdvlt"}]
 version = "0.1.0"
-description = "spaCy pipeline for fictional and first person point-of-view texts in french."
+description = "spaCy pipeline for fictions and first person point-of-view texts in french."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

@@ -138,7 +138,7 @@ class PreTagger:
 
     def to_disk(self, path, *, exclude=tuple(), **kwargs):
         """Do nothing."""
-        pass
+        return self
 
     def from_disk(self, path, *args, exclude=tuple(), **kwargs):
         """Do nothing."""
