@@ -9,7 +9,7 @@ solipCysme
 | **Name** | `fr_solipcysme` |
 | **Version** | `3.7.0` |
 | **spaCy** | `>=3.7.6,<3.8.0` |
-| **Default Pipeline** | `presque_normalizer`, `tokentype`, `morphologizer`, `viceverser_lemmatizer`, `sentencizer`, `parser` |
+| **Default Pipeline** | `jusqucy_tokenizer`,`commecy_normalizer`, `jusqucy_normalizer`, `pretagger_hunspell`,`morphologizer`, `viceverser_lemmatizer`, `sentencizer`, `parser` |
 | **Components** | [quelquhui_tokenizer](https://github.com/thjbdvlt/quelquhui), [presque_normalizer](https://github.com/thjbdvlt/spacy-presque), [tokentype](https://github.com/thjbdvlt/spacy-tokentype), `morphologizer`, [viceverser_lemmatizer](https://github.com/thjbdvlt/spacy-viceverser), `sentencizer`, `parser` |
 | **Vectors** | 504297 keys, 504297 unique vectors (100 dimensions) |
 | **Sources** | Corpus [narraFEATS](https://github.com/thjbdvlt/corpus-narraFEATS) (morphologizer), corpus [cabillaUD](https://github.com/thjbdvlt/corpus-cabillaUD) (parser), corpus [attirail](https://github.com/thjbdvlt/corpus-attirail) (vectors). |
@@ -45,8 +45,15 @@ for i in nlp(
         i.morph, 
         i.lemma_, 
         i.dep_, 
-        i._.tokentype,
-        i._.vv_pos,
-        i._.vv_morph
+        i._.jusqucy_ttypes,
     )
 ```
+
+components and architectures
+------------
+
+solipCysme not only is a *trained pipeline*, but also a set of minimal pipeline components and model architectures that can be used independently:
+
+- `SolipcysmeMultiHashedEmbed`, a modified [MultiHashEmbed](https://spacy.io/api/architectures#MultiHashEmbed) that makes it possible to use `Doc` underscore attributes as features. The value of an attribute must be a `list` of `int`, and must have the same length as the `Doc` itself.
+- `SolipcysmeCharEmbed`, a modified [CharacterEmbed](https://spacy.io/api/architectures#CharacterEmbed) that makes it possible to use underscore attributes as features and that replace `nC` (number of character) by `nCstart` and `nCend`, so that one can chose an asymetric representation of words (e. g., for french, to only suffix, with `nCstart = 0` and `nCend = 6`).
+- `pretagger_hunspell`, a component that makes Hunspell morphological analysis available as *features* for the `SolipcysmeMultiHashedEmbed` or `SolipcysmeCharEmbed` architectures.

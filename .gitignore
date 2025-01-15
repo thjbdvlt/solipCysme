@@ -1,0 +1,9 @@
+*.cpp
+*egg-info
+.tags
+__pycache__
+build
+fr_solipcysme-*
+model*
+test.py
+venv

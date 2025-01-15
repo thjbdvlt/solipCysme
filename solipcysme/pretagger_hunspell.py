@@ -2,9 +2,6 @@ import hunspell
 from spacy.tokens import Doc
 from spacy.lookups import Table
 from spacy import Language
-from spacy.util import ensure_path
-import os
-import shutil
 from typing import Union
 
 
@@ -89,7 +86,9 @@ class PreTagger:
         aff: str,
         ext_names: list[str],
         prefixes: list[str],
-        add_dics: list[str],
+        add_dics: list[str] = None,
+        string_empty: str = "",
+        string_oov: str = "/",
     ):
         """Initiate a PreTagger.
 
@@ -97,93 +96,61 @@ class PreTagger:
             nlp (Language):  The spaCy pipeline.
             dic (str):  Path to Hunspell `.dic`.
             aff (str):  Path to Hunspell `.aff`.
-            attrs (List[str]):  List of Hunspell features.
-            attrs_names (List[str]):  List of Doc Extension names.
+            ext_names (List[str]):  List of Doc extension names.
+            attrs_names (List[str]):  List of prefixes for hunspell features.
+            string_empty (str):  The string to use when no feature.
+            string_oov (str):  The string to use for unknown words.
 
         Returns (Pretagger)
         """
 
         self.name = name
         self.strings = nlp.vocab.strings
-        self.empty = self.strings[""]
-        self.oov = self.strings.add("/")
+        self.empty = self.strings.add(string_empty)
+        self.oov = self.strings.add(string_oov)
         self._nlp = nlp
 
-        try:
-            self.hs = hunspell.HunSpell(dic, aff)
+        self.hs = hunspell.HunSpell(dic, aff)
+        if add_dics:
             for file in add_dics:
                 self.add_dic(file)
-            self.add_exts(ext_names, prefixes)
+        self.add_extensions(ext_names, prefixes)
 
-        except hunspell.HunSpellError:
-            self.hs = None
+    def add_extensions(self, ext_names, prefixes):
+        """Add many extensions."""
 
-    def add_exts(self, ext_names, prefixes):
-        for name, pattern in zip(ext_names, prefixes):
-            Doc.set_extension(
-                name,
-                getter=FeatGetter(pattern, self),
-                force=True,
-            )
+        for name, s in zip(ext_names, prefixes):
+            self.add_ext(name, s)
 
-    def __call__(self, doc):
+    def add_ext(self, ext_name, prefix):
+        """Add an Extension."""
+
+        Doc.set_extension(
+            ext_name,
+            getter=FeatGetter(prefix, self),
+            force=True,
+        )
+
+    def __call__(self, doc, *args, **kwargs):
         """Do nothing."""
-
         return doc
 
-    def _get_fp(self, path):
-        config = self.config
-        return [
-            path / os.path.basename(config[i]) for i in ("dic", "aff")
-        ]
-
-    @property
-    def config(self):
-        return self._nlp.config["components"][self.name]
-
     def to_disk(self, path, *, exclude=tuple(), **kwargs):
-        """Save the PreTagger to disk."""
-
-        config = self.config
-
-        path = ensure_path(path)
-        if not path.exists():
-            path.mkdir()
-
-        path_dic, path_aff = self._get_fp(path)
-
-        try:
-            shutil.copyfile(config["dic"], path_dic)
-            shutil.copyfile(config["aff"], path_aff)
-            if config["add_dics"]:
-                with open(path_dic, "ba") as f_write:
-                    for file_input in config["add_dics"]:
-                        with open(file_input, "br") as f_read:
-                            shutil.copyfileobj(f_read, f_write)
-                            f_write.write(b"\n")
-            with open(path_aff, "ba") as f_write:
-                with open(config["aff"], "br") as f_read:
-                    for line in f_read:
-                        f_write.write(line)
-
-        except FileNotFoundError:
-            pass
+        """Do nothing."""
+        pass
 
     def from_disk(self, path, *args, exclude=tuple(), **kwargs):
-        """Load a Pretagger from disk."""
-
-        path_dic, path_aff = self._get_fp(path)
-        self.hs = hunspell.HunSpell(path_dic, path_aff)
-        config = self.config
-        self.add_exts(config["ext_names"], config["prefixes"])
-        return self
+        """Do nothing."""
+        pass
 
 
 @Language.factory(
     "pretagger_hunspell",
     default_config={
         "name": "pretagger_hunspell",
-        "add_dics": [],
+        "add_dics": None,
+        "string_empty": "",
+        "string_oov": "/",
     },
 )
 def make_pretagger_hunspell(
@@ -194,6 +161,8 @@ def make_pretagger_hunspell(
     ext_names: list[str],
     prefixes: list[str],
     add_dics=[],
+    string_oov: str = "/",
+    string_empty: str = "",
 ):
     return PreTagger(
         nlp=nlp,
@@ -203,4 +172,6 @@ def make_pretagger_hunspell(
         ext_names=ext_names,
         prefixes=prefixes,
         add_dics=add_dics,
+        string_empty=string_empty,
+        string_oov=string_oov,
     )
