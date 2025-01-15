@@ -2,6 +2,7 @@ import hunspell
 from spacy.tokens import Doc
 from spacy.lookups import Table
 from spacy import Language
+from spacy.lang.fr import French
 from typing import Union
 
 
@@ -148,7 +149,7 @@ class PreTagger:
     "pretagger_hunspell",
     default_config={
         "name": "pretagger_hunspell",
-        "add_dics": None,
+        "add_dics": [],
         "string_empty": "",
         "string_oov": "/",
     },
@@ -160,10 +161,58 @@ def make_pretagger_hunspell(
     aff: str,
     ext_names: list[str],
     prefixes: list[str],
+    add_dics: list[str] = [],
+    string_oov: str = "/",
+    string_empty: str = "",
+):
+    return PreTagger(
+        nlp=nlp,
+        name=name,
+        dic=dic,
+        aff=aff,
+        ext_names=ext_names,
+        prefixes=prefixes,
+        add_dics=add_dics,
+        string_empty=string_empty,
+        string_oov=string_oov,
+    )
+
+
+@French.factory(
+    "pretagger_hunspell",
+    default_config={
+        "name": "pretagger_hunspell",
+        "add_dics": None,
+        "dic": None,
+        "aff": None,
+        "ext_names": ["hunspell_po", "hunspell_is"],
+        "prefixes": ["po:", "is:"],
+        "string_empty": "",
+        "string_oov": "/",
+    },
+)
+def make_french_pretagger_hunspell(
+    name: str,
+    nlp,
+    dic: Union[str, None],
+    aff: Union[str, None],
+    ext_names: list[str],
+    prefixes: list[str],
     add_dics=[],
     string_oov: str = "/",
     string_empty: str = "",
 ):
+    if not dic or not aff:
+        from .dicts.util import _get_dict_files
+
+        files = _get_dict_files("fr_ud")
+
+        if not dic:
+            dic = files["dic"]
+
+        if not aff:
+            aff = files["aff"]
+
     return PreTagger(
         nlp=nlp,
         name=name,

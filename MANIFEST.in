@@ -1,0 +1,2 @@
+include viceverser/dicts/*.dic
+include viceverser/dicts/*.aff
