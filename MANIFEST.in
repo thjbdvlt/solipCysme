@@ -1,2 +1,2 @@
-include viceverser/dicts/*.dic
-include viceverser/dicts/*.aff
+include solipcysme/dicts/*.dic
+include solipcysme/dicts/*.aff

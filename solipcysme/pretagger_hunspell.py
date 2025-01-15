@@ -207,10 +207,10 @@ def make_french_pretagger_hunspell(
 
         files = _get_dict_files("fr_ud")
 
-        if not dic:
+        if dic is None:
             dic = files["dic"]
 
-        if not aff:
+        if aff is None:
             aff = files["aff"]
 
     return PreTagger(
