@@ -1,2 +1,2 @@
-include solipcysme/dicts/*.dic
-include solipcysme/dicts/*.aff
+include solipcysme/*.dic
+include solipcysme/*.aff
