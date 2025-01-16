@@ -9,3 +9,4 @@ test.py
 venv
 *.whl
 tests
+*.so
