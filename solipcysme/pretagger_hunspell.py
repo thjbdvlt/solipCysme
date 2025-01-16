@@ -3,8 +3,7 @@ from spacy.tokens import Doc
 from spacy.lookups import Table
 from spacy import Language
 from typing import Union, Callable
-# TODO: replace the `self.strings` by just `hash_string` -- always the same.
-# from spacy.strings import hash_string
+from spacy.strings import hash_string
 
 
 class FeatGetter:
@@ -18,7 +17,6 @@ class FeatGetter:
         self.table = Table()
         self.oov = pretagger.oov
         self.empty = pretagger.empty
-        self.strings = pretagger.strings
         self.hs = pretagger.hs
 
     def __call__(self, doc: Doc) -> Doc:
@@ -70,13 +68,9 @@ class FeatGetter:
         # concatenate sorted values into a string like "po:adjpo:nounpo:verb". That's ugly but it doesn't matter since we only want its hash value.
         a = b"".join(sorted(x)).decode()
 
-        table[word] = self.strings[a]
-
-        # return hash value of that string
-        if a in self.strings:
-            return self.strings[a]
-        else:
-            return self.strings.add(a)
+        x = hash_string(a)
+        table[word] = x
+        return x
 
 
 class PreTagger:
@@ -107,15 +101,15 @@ class PreTagger:
         """
 
         self.name = name
-        self.strings = nlp.vocab.strings
-        self.empty = self.strings.add(string_empty)
-        self.oov = self.strings.add(string_oov)
+        self.empty = hash_string(string_empty)
+        self.oov = hash_string(string_oov)
         self._nlp = nlp
 
         self.hs = hunspell.HunSpell(dic, aff)
         if add_dics:
             for file in add_dics:
                 self.add_dic(file)
+
         self.add_extensions(ext_names, prefixes)
 
     def add_extensions(self, ext_names, prefixes):
@@ -168,7 +162,6 @@ def make_french_pretagger_hunspell(
     string_oov: str = "/",
     string_empty: str = "",
 ):
-
     # `dic` and `aff` could be callable, so the spacy registries can be used.
     if callable(dic):
         dic = dic()
