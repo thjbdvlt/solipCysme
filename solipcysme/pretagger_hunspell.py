@@ -2,8 +2,9 @@ import hunspell
 from spacy.tokens import Doc
 from spacy.lookups import Table
 from spacy import Language
-from spacy.lang.fr import French
-from typing import Union
+from typing import Union, Callable
+# TODO: replace the `self.strings` by just `hash_string` -- always the same.
+# from spacy.strings import hash_string
 
 
 class FeatGetter:
@@ -149,42 +150,7 @@ class PreTagger:
     "pretagger_hunspell",
     default_config={
         "name": "pretagger_hunspell",
-        "add_dics": [],
-        "string_empty": "",
-        "string_oov": "/",
-    },
-)
-def make_pretagger_hunspell(
-    name: str,
-    nlp,
-    dic: str,
-    aff: str,
-    ext_names: list[str],
-    prefixes: list[str],
-    add_dics: list[str] = [],
-    string_oov: str = "/",
-    string_empty: str = "",
-):
-    return PreTagger(
-        nlp=nlp,
-        name=name,
-        dic=dic,
-        aff=aff,
-        ext_names=ext_names,
-        prefixes=prefixes,
-        add_dics=add_dics,
-        string_empty=string_empty,
-        string_oov=string_oov,
-    )
-
-
-@French.factory(
-    "pretagger_hunspell",
-    default_config={
-        "name": "pretagger_hunspell",
         "add_dics": None,
-        "dic": None,
-        "aff": None,
         "ext_names": ["hunspell_po", "hunspell_is"],
         "prefixes": ["po:", "is:"],
         "string_empty": "",
@@ -194,24 +160,20 @@ def make_pretagger_hunspell(
 def make_french_pretagger_hunspell(
     name: str,
     nlp,
-    dic: Union[str, None],
-    aff: Union[str, None],
+    dic: Union[str, Callable],
+    aff: Union[str, Callable],
     ext_names: list[str],
     prefixes: list[str],
-    add_dics=[],
+    add_dics: Union[list[str], None] = [],
     string_oov: str = "/",
     string_empty: str = "",
 ):
-    if not dic or not aff:
-        from .dicts.util import _get_dict_files
 
-        files = _get_dict_files("fr_ud")
-
-        if dic is None:
-            dic = files["dic"]
-
-        if aff is None:
-            aff = files["aff"]
+    # `dic` and `aff` could be callable, so the spacy registries can be used.
+    if callable(dic):
+        dic = dic()
+    if callable(aff):
+        aff = aff()
 
     return PreTagger(
         nlp=nlp,

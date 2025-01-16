@@ -22,6 +22,10 @@ pretagger_hunspell = "solipcysme.pretagger_hunspell:PreTagger"
 SolipcysmeCharEmbed = "solipcysme.char_embed:SolipcysmeCharEmbed"
 SolipcysmeMultiHash = "solipcysme.multi_hash:SolipcysmeMultiHash"
 
+[project.entry-points.spacy_misc]
+solipcysme_dic = "solipcysme.util:get_dic_filepath"
+solipcysme_aff = "solipcysme.util:get_aff_filepath"
+
 [build-system]
 requires = ["setuptools>=74.1", "cython", "spacy", "numpy"]
 build-backend = "setuptools.build_meta"
