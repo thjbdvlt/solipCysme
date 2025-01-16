@@ -31,18 +31,28 @@ import spacy
 
 nlp = spacy.load("fr_solipcysme")
 
-for i in nlp(
+doc = nlp(
     "la MACHINE à (b)rouiller le temps s'est peuuut-etre déraillée..?"
-):
+)
+
+for i in doc:
     print(
-        i, 
-        i.norm_,  # set by commecy / jusqucy
-        i.pos_,  # set by morphologizer
-        i.morph,  # set by morphologizer
-        i.lemma_,   # set by viceverser
-        i.dep_,   # set by parser
-        i._.jusqucy_ttypes,  # set by jusqucy
+        i.norm_,      # commecy_normalizer / jusqucy_normalizer
+        i.pos_,       # morphologizer
+        i.morph,      # morphologizer
+        i.lemma_,     # viceverser_lemmatizer
+        i.dep_,       # parser
+        i.head,       # parser
+        i.sent_start, # jusqucy_tokenizer
+        i._.ttype,    # jusqucy_tokenizer
+        i._.isword,   # jusqucy_tokenizer
     )
+
+print(
+    doc._.jusqucy_ttypes,  # jusqucy_tokenizer
+    doc._.hunspell_po,     # pretagger_hunspell
+    doc._.hunspell_is,     # pretagger_hunspell
+)
 ```
 
 components and architectures
