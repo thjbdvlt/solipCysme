@@ -71,3 +71,16 @@ a modified [CharacterEmbed](https://spacy.io/api/architectures#CharacterEmbed) t
 ### pretagger_hunspell
 
 a component that makes Hunspell morphological analysis available as *features* for the `SolipcysmeMultiHashe` or `SolipcysmeCharEmbed` architectures.
+
+limits and specificities
+------
+
+- only knows about straigt apostroph (`'`) and quotes (`"`).
+- morphologizer depends on the `jusqucy_tokenizer`, because this tokenizer sets a value to a doc extension (`Doc._.jusqucy_ttypes`), used by the morpholgizer.
+- morphologizer depends on the `pretagger_hunspell` component, too; because the morphologizer uses the output of Hunspell as token features (`po:` and `is:` features).
+- no `Gender` feature
+
+license
+------
+
+[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
