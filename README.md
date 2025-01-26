@@ -7,13 +7,13 @@ solipCysme
 | --- | --- |
 | **Language** | french |
 | **Name** | `fr_solipcysme` |
-| **Version** | `3.8.4` |
+| **Version** | `0.2.2` |
 | **spaCy** | `==3.8.4` |
 | **Default Pipeline** | `jusqucy_tokenizer`,`commecy_normalizer`, `jusqucy_normalizer`, `pretagger_hunspell`,`morphologizer`, `viceverser_lemmatizer`, `parser` |
 | **Components** | [jusqucy_tokenizer](https://github.com/thjbdvlt/jusquci), [jusqucy_normalizer](https://github.com/thjbdvlt/jusquci), [commecy_normalizer](https://github.com/thjbdvlt/commecy), `morphologizer`, [viceverser_lemmatizer](https://github.com/thjbdvlt/spacy-viceverser), `parser` |
-| **Vectors** | 421266 keys, 421266 unique vectors (100 dimensions) |
+| **Vectors** | 669785 keys, 6697856 unique vectors (100 dimensions) |
 | **Sources** | Corpus [narraFEATS](https://github.com/thjbdvlt/corpus-narraFEATS) (morphologizer), [Universal Dependencies](https://universaldependencies.org/fr/) (parser), [french-word-vectors](https://github.com/thjbdvlt/french-word-vectors) (vectors)|
-| **License** | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr) |
+| **License** | [GPL](https://www.gnu.org/licenses/gpl-3.0.html) |
 | **Author** | [thjbdvlt](https://github.com/thjbdvlt) |
 
 installation
@@ -83,4 +83,4 @@ limits and specificities
 license
 ------
 
-[CC-BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+this work is released under [GPL](https://www.gnu.org/licenses/gpl-3.0.html) license.

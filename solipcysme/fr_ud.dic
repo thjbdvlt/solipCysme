@@ -1,4 +1,4 @@
-74678
+74679
 -/&-&& #
 _/&&  
 0/00  po:num
@@ -56802,7 +56802,7 @@ prône/Es&&  po:noun
 pronéphros/&&  po:noun  is:inv
 prôner/a0p+&&  po:verb
 prôneur·euse/,,rs&&  po:noun
-pronom/Es&&  po:noun 
+pronom/Es&&  po:noun  ph:pronon
 pronominal·e/,,al&&  po:noun po:adj
 pronominalement/&&  po:adv
 pronominalisation/Es&&  po:noun 
@@ -70554,6 +70554,7 @@ traiter/a0p+&&  po:verb
 trait/Es&&  po:noun 
 traiteur/Es&&  po:noun 
 traiteur·euse/,,rs&&  po:noun
+traitillé·e/,,Ee&&  po:noun po:adj
 traitre/Es&&  po:noun po:adj 
 traître/Es&&  po:noun po:adj 
 traitresse/Es&&  po:noun po:adj 
