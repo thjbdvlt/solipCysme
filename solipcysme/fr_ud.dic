@@ -1,4 +1,4 @@
-74679
+74686
 -/&-&& #
 _/&&  
 0/00  po:num
@@ -10514,6 +10514,8 @@ cadogan/Es&&  po:noun
 cadole/Es&&  po:noun 
 cador/Es&&  po:noun 
 cadoter/a0p+&&  po:verb
+cad/  po:adv
+càd/  po:adv
 cad/&p  po:pfx
 cadrage/Es&&  po:noun 
 cadran/Es&&  po:noun 
@@ -17329,8 +17331,6 @@ covellite/Es&&  po:noun
 covenant/Es&&  po:noun 
 covendeur·euse/,,rs&&  po:noun
 covergirl/Es&&  po:noun 
-covid-19/&&  po:propn
-covid/&&  po:propn
 covin/Es&&  po:noun 
 covoiturage/Es&&  po:noun 
 covoiturer/a0p+&&  po:verb
@@ -19511,6 +19511,7 @@ défenestration/Es&&  po:noun
 défenestrer/a0p+&&  po:verb
 défense/Es&&  po:noun 
 défenseur·e/,,Ee&&  po:noun
+défenseur·euse/,,rs&&  po:noun
 défensif·ve/,,fv&&  po:noun po:adj
 défensivement/&&  po:adv
 défens/&&  po:noun is:sg 
@@ -41800,6 +41801,7 @@ lokoum/Es&&  po:noun
 lolette/Es&&  po:noun 
 lolita/Es&&  po:noun 
 lolo/Es&&  po:noun 
+lol/  po:adv
 lol/&&  po:intj
 lombago/Es&&  po:noun 
 lombaire/Es&&  po:adj 
@@ -43824,6 +43826,7 @@ mazout/Es&&  po:noun
 mazurka/Es&&  po:noun 
 mbalax/&&  po:noun  is:inv
 mCE/&&  po:noun  is:inv
+mdr/  po:adv
 méaculpa/Es&&  po:noun 
 mea-culpa  po:noun  is:inv
 méandre/Es&&  po:noun 
@@ -57374,6 +57377,7 @@ psychrotrophe/Es&&  po:adj
 psy/Es&&  po:noun 
 psylle/Es&&  po:noun 
 psyllium/Es&&  po:noun 
+ptdr/  po:adv
 ptéranodon/Es&&  po:noun 
 ptéridophyte/Es&&  po:noun 
 ptérobranche/Es&&  po:noun 
@@ -62027,6 +62031,7 @@ romanisation/Es&&  po:noun
 romaniser/a0p+&&  po:verb
 romanisme/Es&&  po:noun 
 romaniste/Es&&  po:noun 
+romanistique/Es&&  po:noun 
 romanité/Es&&  po:noun 
 romano/Es&&  po:noun 
 roman-photo  po:noun  is:sg
@@ -66474,6 +66479,7 @@ stot/Es&&  po:noun
 stoupa/Es&&  po:noun 
 stoûpa/Es&&  po:noun 
 stout/Es&&  po:noun 
+stp/  po:adv
 strabique/Es&&  po:adj 
 strabisme/Es&&  po:noun 
 stradiot/Es&&  po:noun 
@@ -74273,6 +74279,7 @@ xiphosure/Es&&  po:noun
 xi/&&  po:noun  is:inv
 xml/&&  po:noun
 x/&&  po:noun  is:inv
+xptdr/  po:adv
 xylème/Es&&  po:noun 
 xylène/Es&&  po:noun 
 xylidine/Es&&  po:noun 
