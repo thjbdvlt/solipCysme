@@ -10,3 +10,4 @@ venv
 *.whl
 tests
 *.so
+get_data.sh
