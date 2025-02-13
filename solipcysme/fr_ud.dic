@@ -1,4 +1,4 @@
-74686
+74685
 -/&-&& #
 _/&&  
 0/00  po:num
@@ -19464,8 +19464,8 @@ déduction/Es&&  po:noun
 déductivement/&&  po:adv
 déduire/yM&&  po:verb
 déduplication/Es&&  po:noun 
-de/El&&  po:adp is:eli
-de/El&&  po:det is:inv  is:eli
+de/El&&  po:adp
+de/El&&  po:det is:inv 
 dé/Es&&  po:noun 
 déesse/Es&&  po:noun 
 défaçage/Es&&  po:noun 
@@ -39730,7 +39730,7 @@ jusée/Es&&  po:noun
 jusnaturalisme/Es&&  po:noun 
 jusnaturaliste/Es&&  po:noun po:adj 
 jus/&&  po:noun  is:inv
-jusque/El&&  po:adp is:eli
+jusque/El&&  po:adp
 jusque-là  po:adv
 jusque/&&  po:adp
 jusques/&&  po:adp
@@ -40302,10 +40302,9 @@ ladite/&&  st:ledit po:det is:sg
 ladre/Es&&  po:noun po:adj 
 ladrerie/Es&&  po:noun 
 lady/GB&&  po:noun 
-la/El&&  po:det is:sg  is:eli st:le·a
-la/El&&  po:det is:sg  is:eli st:le·a
-la/El&&  po:noun  is:inv is:eli st:le·a
-la/ElPP&&  po:pron po:adp is:sg  is:eli st:le·a
+la/El&&  po:det is:sg  st:le·a
+la/El&&  po:noun  is:inv st:le·a
+la/ElPP&&  po:pron po:adp is:sg  st:le·a
 laetare/Es&&  po:noun 
 lagen/Es&&  po:noun 
 lagomorphe/Es&&  po:noun 
@@ -40577,7 +40576,7 @@ là/&&  po:adv
 lapon·e/,,Ee&&  po:noun po:adj
 lapon·ne/,,ll&&  po:noun po:adj
 la/&&  po:noun  is:inv
-la/PP&&  st:le po:pron po:adp is:sg 
+la/PP&&  st:le·a po:pron po:adp is:sg 
 laps/&&  po:noun  is:inv
 lapsus/&&  po:noun  is:inv
 laptot/Es&&  po:noun 
@@ -40660,7 +40659,7 @@ lassitude/Es&&  po:noun
 lasso/Es&&  po:noun 
 lastex/&&  po:noun  is:inv
 lasting/Es&&  po:noun 
-la/&&  st:le po:det is:sg 
+la/&&  st:le·a po:det is:sg 
 lasure/Es&&  po:noun 
 lasurer/a0p+&&  po:verb
 latanier/Es&&  po:noun 
