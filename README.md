@@ -7,7 +7,7 @@ solipCysme
 | --- | --- |
 | **Language** | french |
 | **Name** | `fr_solipcysme` |
-| **Version** | `0.2.4` |
+| **Version** | `0.2.5` |
 | **spaCy** | `==3.8.4` |
 | **Default Pipeline** | `jusqucy_tokenizer`,`commecy_normalizer`, `jusqucy_normalizer`, `pretagger_hunspell`,`morphologizer`, `viceverser_lemmatizer`, `parser` |
 | **Components** | [jusqucy_tokenizer](https://github.com/thjbdvlt/jusquci), [jusqucy_normalizer](https://github.com/thjbdvlt/jusquci), [commecy_normalizer](https://github.com/thjbdvlt/commecy), `morphologizer`, [viceverser_lemmatizer](https://github.com/thjbdvlt/spacy-viceverser), `parser` |
@@ -20,7 +20,7 @@ installation
 ------------
 
 ```bash
-pip install https://github.com/thjbdvlt/solipCysme/releases/download/v0.2.4/fr_solipcysme-0.2.4-py3-none-any.whl
+pip install https://github.com/thjbdvlt/solipCysme/releases/download/v0.2.5/fr_solipcysme-0.2.5-py3-none-any.whl
 ```
 
 usage
@@ -49,6 +49,8 @@ for i in doc:
     )
 
 print(
+    # these attributes are not especially usefull.
+    # mostly used to make morphologizer more accurate.
     doc._.jusqucy_ttypes,  # jusqucy_tokenizer
     doc._.hunspell_po,     # pretagger_hunspell
     doc._.hunspell_is,     # pretagger_hunspell
@@ -83,4 +85,4 @@ limits and specificities
 license
 ------
 
-this work is released under [GPL](https://www.gnu.org/licenses/gpl-3.0.html) license.
+this work is released under [GPL](https://www.gnu.org/licenses/gpl-3.0.html) license (v3).
