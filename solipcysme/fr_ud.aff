@@ -64,7 +64,7 @@ SFX lx l ux/ al  is:pl
 # auteur, autrice, autrices, auteurs, auteurice, auteurices. plutôt que de placer "auteur" comme base dont j'enlève "eur" pour fabriquer le reste, je pars du radical (aut). il faut alors utiliser le flag `__` (NEEDAFFIX) sur les mots concernés (pour que "aut" tout seul ne soit pas considéré comme juste). je fais de même pour différentes formes de noms et d'adjectifs ci-dessous, ex. vi -ve -f.
 
 # aut -rice -eur -eurice
-SFX ri Y 9
+SFX ri Y 11
 SFX ri 0 /EsIs .  
 SFX ri eur·rice rice/Es .  
 SFX ri eur·rice ricex/Es .   
@@ -74,6 +74,8 @@ SFX ri ·rice ice/Es .
 SFX ri ·rice -rice/EsIs .  
 SFX ri ·rice -trice/EsIs .  
 SFX ri rice trice/EsIs .  
+SFX ri ·rice -ice/EsIs .  
+SFX ri rice ice/EsIs .  
 
 # aut -eur -eure (alternative à autrice, aussi pour amateur·e)
 SFX re Y 5
@@ -7092,6 +7094,6 @@ COMPOUNDBEGIN &p
 COMPOUNDMIDDLE &-
 COMPOUNDEND &&
 
-# "-"
+# "-", "a" (comme dans "agnostique")
 COMPOUNDMIN 1
 

@@ -1,4 +1,4 @@
-74685
+74686
 -/&-&& #
 _/&&  
 0/00  po:num
@@ -12482,7 +12482,7 @@ cha-cha-cha  po:noun  is:inv
 chachlik/Es&&  po:noun 
 chacone/Es&&  po:noun 
 chaconne/Es&&  po:noun 
-chacun·e/,,Ee&&  po:pron is:3sg 
+chacun·e/,,Ee&&  po:pron is:3sg
 chadburn/Es&&  po:noun 
 chadouf/Es&&  po:noun 
 chaféisme/Es&&  po:noun 
@@ -29328,7 +29328,7 @@ finassier·ère/,,rr&&  po:noun po:adj
 finaud·e/,,Ee&&  po:noun po:adj
 finauderie/Es&&  po:noun 
 finaux/&&  po:adj is:pl 
-fin·e/,,Ee&&  po:noun po:adj
+fin·e/,,Ee&&  po:adj
 finement/&&  po:adv
 finerie/Es&&  po:noun 
 fin/Es&&  po:noun 
@@ -64070,7 +64070,6 @@ sénégambien·ne/,,ll&&  po:adj
 senescence/Es&&  po:noun 
 sénescence/Es&&  po:noun 
 sénescent·e/,,Ee&&  po:adj
-sen/Es&&  po:noun 
 senestré·e/,,Ee&&  po:adj
 sénestré·e/,,Ee&&  po:adj
 senestre/Es&&  po:adj 
@@ -64135,7 +64134,8 @@ sensoriellement/&&  po:adv
 sensorimétrie/Es&&  po:noun 
 sensorimétrique/Es&&  po:adj 
 sensorimoteur·rice/,,ri&&  po:adj
-sens/&&  po:noun  is:inv is:pl is:sg
+sens/  po:noun  is:inv is:pl
+sens/  po:noun  is:inv is:sg
 sensualisme/Es&&  po:noun 
 sensualiste/Es&&  po:noun po:adj 
 sensualité/Es&&  po:noun 
@@ -64179,7 +64179,7 @@ sépia/Es&&  po:noun
 sépia/&&  po:adj is:inv 
 sépiole/Es&&  po:noun 
 sépiolite/Es&&  po:noun 
-se/&&  po:pron po:adp is:inv  is:3sg is:3pl 
+se/&&  po:pron po:adp is:inv  is:3sg is:3pl
 seppuku/Es&&  po:noun 
 sepsis/&&  po:noun  is:inv
 septain/Es&&  po:noun 
@@ -66963,7 +66963,8 @@ suivisme/Es&&  po:noun
 suiviste/Es&&  po:noun po:adj 
 suivre/xQ&&  po:verb
 sujétion/Es&&  po:noun 
-sujet·te/,,ll&&  po:noun po:adj
+sujet/,,&&  po:noun
+sujet·te/,,ll&&  po:adj
 sukkeler/d0p.&&  po:verb
 sukuma/Es&&  po:noun po:adj 
 sulcature/Es&&  po:noun 
