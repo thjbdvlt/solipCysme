@@ -95,7 +95,7 @@ def SolipcysmeMultiHash(
         )
     else:
         model = chain(
-            SolipcysmeFeatureExtractor(list(features, u_features)),
+            SolipcysmeFeatureExtractor(features, u_features),
             cast(Model[List[Ints2d], Ragged], list2ragged()),
             with_array(concatenate(*embeddings)),
             max_out,
