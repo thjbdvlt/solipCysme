@@ -9,3 +9,4 @@ To train only one component (i.e. morphologizer or parser), one can use the trai
 # Todo
 
 - Pretraining for the dependency parser.
+- Find good data for pretraining.
