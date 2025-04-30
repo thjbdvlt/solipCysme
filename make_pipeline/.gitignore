@@ -1,0 +1,10 @@
+venv
+vectors
+model
+model-last
+model-best
+data
+pipeline
+archive
+fr_solipCysme*
+fr_solipcysme*

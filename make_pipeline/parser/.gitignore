@@ -1,0 +1,6 @@
+*.spacy
+*.dic
+*.aff
+model
+pretrain
+data

@@ -1,0 +1,45 @@
+{
+  "lang":"fr",
+  "name":"solipcysme",
+  "version":"0.2.5",
+  "description":"",
+  "author":"thjbdvlt",
+  "email":"",
+  "url":"https://github.com/thjbdvlt/solipCysme",
+  "license":"GPLv3",
+  "spacy_version":">=3.8.3,<3.9.0",
+  "spacy_git_version":"be0fa81",
+  "vectors":{
+    "width":100,
+    "vectors":421266,
+    "keys":421266,
+    "name":"fr_solipcysme.vectors"
+  },
+  "pipeline":[
+    "commecy_normalizer",
+    "jusqucy_normalizer",
+    "pretagger_hunspell",
+    "morphologizer",
+    "viceverser_lemmatizer",
+    "parser"
+  ],
+  "components":[
+    "commecy_normalizer",
+    "jusqucy_normalizer",
+    "pretagger_hunspell",
+    "morphologizer",
+    "viceverser_lemmatizer",
+    "parser"
+  ],
+  "disabled":[
+  ],
+  "performance":{
+  },
+  "requirements":[
+    "spacy",
+    "jusqucy @git+https://github.com/thjbdvlt/jusquci",
+    "commecy @git+https://github.com/thjbdvlt/commecy",
+    "solipcysme @git+https://github.com/thjbdvlt/solipCysme",
+    "viceverser @git+https://github.com/thjbdvlt/spacy-viceverser"
+  ]
+}
