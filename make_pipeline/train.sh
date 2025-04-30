@@ -19,8 +19,8 @@ required:
 
 optional:
 
--v   DIR:  Path to Word2Vec word vectors (text format).
--b         Word2Vec are in binary format.
+-v   FILE:  Path to Word2Vec word vectors (text format).
+-b          Word2Vec are in binary format.
 "
 
 # Unset all variables.
