@@ -1,4 +1,4 @@
-74686
+74687
 -/&-&& #
 _/&&  
 0/00  po:num
@@ -1758,6 +1758,7 @@ aide-soignante  po:noun  is:sg
 aide-soignant  po:noun  is:sg
 aides-soignantes  po:noun  is:pl
 aides-soignants  po:noun  is:pl
+aie /  po:intj
 aïe/&&  po:intj
 aï/Es&&  po:noun 
 aïeul·e/,,Ee&&  po:noun

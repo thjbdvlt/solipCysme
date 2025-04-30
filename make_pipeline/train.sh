@@ -21,17 +21,13 @@ required:
 # Unset all variables.
 size=
 raw=
-word2vec=
 vectors=vectors
 labels=labels
-word2vec_binary=
 
 # Parse options.
-while getopts s:v:r:hb opt; do
+while getopts s:r:h opt; do
     case $opt in
         s) size="$OPTARG";;
-        b) word2vec_binary=true;;
-        v) word2vec="$OPTARG";;
         r) raw="$OPTARG";;
         m) morph="$OPTARG";;
         h)
@@ -63,43 +59,15 @@ opts=(
     -l  "$(realpath "$labels")"
 )
 
-init_vectors() {
-    local src="$1"
-    local src_txt="data/vec.txt"
-    local dest="$2"
-
-    # Check argument
-    [ "$1" ] || {
-        echo "Missing argument in function 'init_vectors'." >&2
-        exit 1
-    }
-    ensure_exists "$1"
-
-    # If binary format: convert it to text format first.
-    [ "$word2vec_binary" ] && {
-        python3 ./util/vec_bin_to_txt.py "$src" "$src_txt"
-        src="$src_txt"
-    }
-
-    # Convert to spaCy format.
-    spacy init vectors fr "$src" "${vectors}/${size}" --verbose \
-        --attr NORM --name solipcysme.vectors 
-}
-
-# Medium/Large models use word vectors.
-if [ "$size" == md ] || [ "$size" == lg ]
-then
-    mkdir -p "${vectors}/${size}"
-    [ -s "${vectors}/${size}/vocab/vectors" ] || {
-        [ "$word2vec" ] || {
-            echo "No vectors found." >&2
-            echo "Submit source with '-v' option." >&2
-            exit 1
-        }
-        init_vectors "$word2vec" "${vectors}/${size}"
-    }
-    opts+=(-v "$(realpath $vectors)")
-fi
+# Ensure vectors are here if needed.
+case $size in
+    sm);;
+    md | lg) ./get_vectors.sh -s $size;;
+    *)
+        echo "Unknown value for size: $size" >&2
+        echo "Possible values are: sm, md, lg. " >&2
+        exit 1;;
+esac
 
 # Train the trainable components.
 for i in morphologizer parser

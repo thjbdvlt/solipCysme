@@ -9,7 +9,6 @@ set -e -o pipefail
 
 # Command line options
 size=
-vectors=
 raw=
 labels=
 
@@ -22,9 +21,9 @@ output=./model
 # Help
 usage="usage:
 
-$0 -s SIZE -v VECTORS -r RAW
+$0 -s SIZE -r RAW
 
-e.g.: -v ./vectors -r raw.txt
+e.g.: -r raw.txt
 "
 
 # Parse options
@@ -32,7 +31,6 @@ while getopts s:l:v:r:h opt; do
     case $opt in
         s) size="$OPTARG";;
         l) labels="$OPTARG";;
-        v) vectors="$OPTARG";;
         r) raw="$OPTARG";;
         h)
             echo "$usage"
@@ -90,8 +88,7 @@ opts=()
 # while Small requires vectors to be set to 'null'.
 if [ "$size" == md ] || [ "$size" == lg ]
 then
-    : ${vectors:?Missing -v vectors}
-    path_vec="${vectors}/${size}"
+    path_vec="../vectors/${size}"
 else
     path_vec=null
 fi
