@@ -16,11 +16,6 @@ required:
 
 -s   SIZE: Small (sm), Medium (md), Large (lg).
 -r   FILE: File with raw text for pretraining.
-
-optional:
-
--v   FILE:  Path to Word2Vec word vectors (text format).
--b          Word2Vec are in binary format.
 "
 
 # Unset all variables.

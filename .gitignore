@@ -10,4 +10,4 @@ venv
 *.whl
 tests
 *.so
-get_data.sh
+get_hunspell_files.sh
