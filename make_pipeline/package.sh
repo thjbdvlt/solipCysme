@@ -60,7 +60,7 @@ parser="$(model_path parser)"
 
 # Check that the models exists. If not, train them.
 [ -s "$morph" ] && [ -s "$parser" ] || {
-    echo "Missing components. Training..."
+    echo "Missing components. Training..." >&2
     ./train.sh -s "$size" -r "$raw"
 }
 
