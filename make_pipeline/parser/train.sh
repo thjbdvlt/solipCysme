@@ -10,7 +10,6 @@ set -e -o pipefail
 # Command line options
 size=
 raw=
-labels=
 morph=
 
 # Files and directory
@@ -22,7 +21,7 @@ output=./model
 # Help
 usage="usage:
 
-$0 -s SIZE -r RAW -m MORPHOLOGIZER
+$0 -s SIZE -r RAW
 
 e.g.: -r raw.txt
 "
@@ -32,7 +31,6 @@ while getopts s:r:h opt; do
     case $opt in
         s) size="$OPTARG";;
         r) raw="$OPTARG";;
-        m) morph="$OPTARG";;
         h)
             echo "$usage"
             exit 0;;
@@ -45,9 +43,6 @@ done
 # Ensure all required variables are set
 : ${size:?Missing -s size}
 : ${raw:?Missing -r raw}
-: ${train:?Missing -t train}
-: ${dev:?Missing -d dev}
-: ${labels:?Missing -l labels}
 
 # Ensure that 'train', 'dev', 'raw' data are files,
 for i in "$train" "$dev" "$raw"
@@ -58,10 +53,10 @@ do
     }
 done
 
-# Default Morphologizer is best model with same size.
+# Morphologizer is best model with same size.
 # (It needs to be the same static vectors.)
 # As the size needs to be known, it cannot be defined at the top.
-[ "$morph" ] || morph="../morphologizer/model/${size}/model-best"
+morph="../morphologizer/model/${size}/model-best"
 
 # Ensure that 'labels' is a directory.
 test -d "$labels" || {
@@ -119,7 +114,7 @@ opts+=(
 )
 
 # Get the data if its missing.
-test -s "$train" && test -s "$dev" || make spacy
+[ -s "$train" ] && [ -s "$dev" ] || ./get_data.sh
 
 # Labels
 test -s "$labels_json" || {

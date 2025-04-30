@@ -1,8 +1,1 @@
-model
-pretrain
 narrafeats
-*.spacy
-__pycache__
-.tags
-*.gz
-*.tar

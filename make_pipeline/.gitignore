@@ -8,3 +8,7 @@ pipeline
 archive
 fr_solipCysme*
 fr_solipcysme*
+*.spacy
+__pycache__
+.ruff_format
+pretrain

@@ -5,7 +5,7 @@
 # Trainable components (morphologizer + parser) are trained using
 # all other components outputs (normalizers, lemmatizer, ...).
 # Thus, the pipeline should be re-trained whenever these components
-# get updated.
+# are updated.
 
 set -e -o pipefail
 
@@ -29,7 +29,6 @@ while getopts s:r:h opt; do
     case $opt in
         s) size="$OPTARG";;
         r) raw="$OPTARG";;
-        m) morph="$OPTARG";;
         h)
             echo "$usage"
             exit 0;;
