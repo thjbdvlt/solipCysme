@@ -3,7 +3,7 @@ src_vectors   :=
 # Model and Pipeline Outputs
 vec_txt       := data/vec.txt
 
-.PHONY: package all clean pipeline train vectors
+.PHONY: package all clean pipeline train vectors release
 
 all: train package
 
@@ -17,6 +17,9 @@ train:
 package:
 	./package.sh -s sm
 	./package.sh -s lg
+
+release: package
+	./release.sh
 
 # Vectors from Word2Vec to spaCy format.
 # TODO: sizes!

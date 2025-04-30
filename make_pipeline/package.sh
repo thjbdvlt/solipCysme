@@ -29,14 +29,16 @@ size=
 name=solipCysme
 output=pipeline
 meta=meta.json
+raw=data/raw.txt
 
 # Parse options.
-while getopts s:o:h opt; do
+while getopts s:o:hr: opt; do
     case $opt in
         s) size="$OPTARG";;
         o) output="$OPTARG";;
         n) name="$OPTARG";;
         m) meta="$OPTARG";;
+        r) raw="$OPTARG";;
         h)
             echo "$usage"
             exit 0;;
@@ -55,6 +57,12 @@ model_path() {
 }
 morph="$(model_path morphologizer)"
 parser="$(model_path parser)"
+
+# Check that the models exists. If not, train them.
+[ -s "$morph" ] && [ -s "$parser" ] || {
+    echo "Missing components. Training..."
+    ./train.sh -s "$size" -r "$raw"
+}
 
 # Build the full pipeline with right components and configuration.
 python3 ./util/make_pipeline.py "$morph" "$parser" "$output"
