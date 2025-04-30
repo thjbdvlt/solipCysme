@@ -87,16 +87,15 @@ init_vectors() {
     }
 
     # Convert to spaCy format.
-    spacy init vectors fr "$src" "$vectors" --verbose \
+    spacy init vectors fr "$src" "${vectors}/${size}" --verbose \
         --attr NORM --name solipcysme.vectors 
 }
 
-
-# Medium/Large models require word vectors,
-# while Small requires vectors to be set to 'null'.
+# Medium/Large models use word vectors.
 if [ "$size" == md ] || [ "$size" == lg ]
 then
-    [ -s "$vectors" ] || {
+    mkdir -p "${vectors}/${size}"
+    [ -s "${vectors}/${size}/vocab/vectors" ] || {
         [ "$word2vec" ] || {
             echo "No vectors found." >&2
             echo "Submit source with '-v' option." >&2
@@ -106,13 +105,6 @@ then
     }
     opts+=(-v "$(realpath $vectors)")
 fi
-
-# # Vectors are optional.
-# if [ "$vectors" ]
-# then
-#     test -s 
-#     opts+=( -v "$(realpath "$vectors")" )
-# fi
 
 # Train the trainable components.
 for i in morphologizer parser
