@@ -19,22 +19,24 @@ required:
 
 optional:
 
--v   DIR:  Directory with vectors in spaCy format.
--l   DIR:  Directory with labels.
+-v   DIR:  Path to Word2Vec word vectors (text format).
+-b         Word2Vec are in binary format.
 "
 
 # Unset all variables.
 size=
 raw=
+word2vec=
 vectors=vectors
 labels=labels
+word2vec_binary=
 
 # Parse options.
-while getopts s:l:v:r:h opt; do
+while getopts s:v:r:hb opt; do
     case $opt in
         s) size="$OPTARG";;
-        l) labels="$OPTARG";;
-        v) vectors="$OPTARG";;
+        b) word2vec_binary=true;;
+        v) word2vec="$OPTARG";;
         r) raw="$OPTARG";;
         m) morph="$OPTARG";;
         h)
@@ -56,7 +58,6 @@ ensure_exists() {
 # Ensure all required variables are set.
 : ${size:?Missing -s size}
 : ${raw:?Missing -r raw}
-: ${labels:?Missing -l labels}
 ensure_exists "$raw"
 ensure_exists "$labels"
 
@@ -67,13 +68,51 @@ opts=(
     -l  "$(realpath "$labels")"
 )
 
-# Vectors are optional.
-if [ "$vectors" ]
+init_vectors() {
+    local src="$1"
+    local src_txt="data/vec.txt"
+    local dest="$2"
+
+    # Check argument
+    [ "$1" ] || {
+        echo "Missing argument in function 'init_vectors'." >&2
+        exit 1
+    }
+    ensure_exists "$1"
+
+    # If binary format: convert it to text format first.
+    [ "$word2vec_binary" ] && {
+        python3 ./util/vec_bin_to_txt.py "$src" "$src_txt"
+        src="$src_txt"
+    }
+
+    # Convert to spaCy format.
+    spacy init vectors fr "$src" "$vectors" --verbose \
+        --attr NORM --name solipcysme.vectors 
+}
+
+
+# Medium/Large models require word vectors,
+# while Small requires vectors to be set to 'null'.
+if [ "$size" == md ] || [ "$size" == lg ]
 then
-    : ${vectors:?Missing -v vectors}
-    ensure_exists "$vectors"
-    opts+=( -v "$(realpath "$vectors")" )
+    [ -s "$vectors" ] || {
+        [ "$word2vec" ] || {
+            echo "No vectors found." >&2
+            echo "Submit source with '-v' option." >&2
+            exit 1
+        }
+        init_vectors "$word2vec" "${vectors}/${size}"
+    }
+    opts+=(-v "$(realpath $vectors)")
 fi
+
+# # Vectors are optional.
+# if [ "$vectors" ]
+# then
+#     test -s 
+#     opts+=( -v "$(realpath "$vectors")" )
+# fi
 
 # Train the trainable components.
 for i in morphologizer parser
