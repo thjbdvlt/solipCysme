@@ -9,5 +9,3 @@ To train only one component (i.e. morphologizer or parser), one can use the trai
 # Todo
 
 - Pretraining for the dependency parser.
-- Option `-V` in [train.sh](train.sh) to make vectors in spaCy format from word vectors.
-- Release script.
