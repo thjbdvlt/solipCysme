@@ -1,6 +1,6 @@
 Scripts and data to train [solipCysme](https://github.com/thjbdvlt/solipCysme), a [spaCy](https://spacy.io/) pipeline for french.
 
-The main scripts are [[train.sh]], which train the morphologizer then the parser, and [[package.sh]], which assembly the pipeline and package it.
+The main scripts are [train.sh](train.sh), which train the morphologizer then the parser, and [package.sh](package.sh), which assembly the pipeline and package it.
 
 Some scripts also fetch data from GitHub as training data (see `get_data.sh` scripts).
 
