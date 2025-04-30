@@ -44,7 +44,8 @@ case $size in
         exit 1;;
 esac
 
-# Files
+# Paths
+mkdir -p vectors
 bin=vectors/vectors.bin
 txt=vectors/vectors.txt
 
@@ -53,8 +54,8 @@ txt=vectors/vectors.txt
 
 # Convert from text word2vec to spaCy format.
 convert_vectors() {
-    spacy init vectors fr vectors/vectors.txt "vectors/${size}" --verbose \
-        --attr NORM --name solipcysme.vectors 
+    spacy init vectors fr $txt vectors/${size} \
+        --verbose --attr NORM --name solipcysme.vectors 
 }
 
 # If vectors exists in text format, convert to spaCy format.
@@ -76,4 +77,6 @@ bin_to_spacy() {
 }
 
 # If the script reach that point, download the vectors.
-wget https://github.com/thjbdvlt/french-word-vectors/releases/download/v0.3.1/vectors.bin -P
+repo=https://github.com/thjbdvlt/french-word-vectors
+wget ${repo}/releases/download/v0.3.1/vectors.bin -P vectors
+bin_to_spacy
