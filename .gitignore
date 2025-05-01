@@ -11,3 +11,4 @@ venv
 tests
 *.so
 get_hunspell_files.sh
+*.gz
