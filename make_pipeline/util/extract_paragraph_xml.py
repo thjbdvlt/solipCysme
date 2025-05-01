@@ -10,12 +10,14 @@ def main(directory: Path, fp_out: Path, max: int = 10000):
         raise ValueError("Not a directory:", directory)
     files = os.listdir(directory)
     files = sorted(files)  # Ensure reproductibility
+    files = [directory / Path(i) for i in files]
     n = 0
     fo = fp_out.open("bw")
     for file in files:
-        if file.endswith(".xml"):
+        if file.suffix == ".xml":
+            print(file)
             x = etree.parse(file)
-            for i in x.iterdescendants():
+            for i in x.getroot().iterdescendants():
                 if i.tag == "p":
                     n += 1
                     if n >= max:
