@@ -48,6 +48,7 @@ convert_vectors() {
     exit 0
 }
 
+# Convert binary format to text format then to spaCy format.
 bin_to_spacy() {
     python3 ./util/vec_bin_to_txt.py $bin $txt
     convert_vectors
