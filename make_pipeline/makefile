@@ -1,19 +1,22 @@
-.PHONY: all package clean train release
+.PHONY: all package clean train release sm lg
 
 all: package
 
-train:
-	./train.sh sm
-	./train.sh lg
+sm lg:
+	./train.sh $@
+	./package.sh -s $@
 
-package:
-	./package.sh -s sm
-	./package.sh -s lg
+train package:
+	./$@.sh sm
+	./$@.sh lg
 
 release:
-	./release.sh
+	./$@.sh
 
 clean:
 	rm -rf ./fr_solipcysme* ./fr_solipCysme* ./pipeline \
 		./data/2000romans19e20e-1.0.0 ./data/v1.0.0* \
-		./parser/pretrain ./morphologizer/pretrain
+
+clean_all:
+	make clean
+	rm -rf ./parser/pretrain ./morphologizer/pretrain
