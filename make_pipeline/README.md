@@ -5,8 +5,3 @@ The main scripts are [train.sh](train.sh), which train the morphologizer then th
 Some scripts also fetch data from GitHub as training data (see `get_data.sh` scripts).
 
 To train only one component (i.e. morphologizer or parser), one can use the training script (`train.sh`) in the according directory.
-
-# Todo
-
-- Pretraining for the dependency parser.
-- Find good data for pretraining.

@@ -9,7 +9,6 @@ set -e -o pipefail
 
 # Command line options
 size=
-raw=
 
 # Files and directory
 train="./narrafeats/train.spacy"
@@ -17,32 +16,17 @@ dev=./narrafeats/dev.spacy
 cfg=config.cfg
 output=./model
 labels=../labels
+raw=../data/raw.txt
 
-# Help
-usage="usage:
+# Help message.
+usage="usage:  $0 {sm|md|lg}"
+[ "$1" == '-h' ] && {
+    echo "$usage"
+    exit 0
+}
 
-$0 -s {sm|md|lg} -r RAW
-
-e.g.: $0 -s sm -r ../data/raw.txt
-"
-
-# Parse options
-while getopts s:r:h opt; do
-    case $opt in
-        s) size="$OPTARG";;
-        r) raw="$OPTARG";;
-        h)
-            echo "$usage"
-            exit 0;;
-        *)
-            echo "Unknown flag: $opt" >&2
-            exit 1;;
-    esac
-done
-
-# Ensure all required variables are set
-: ${size:?Missing -s size}
-: ${raw:?Missing -r raw}
+# Only one argument is needed: size.
+size="$1"
 
 # Ensure that 'train', 'dev', 'raw' data are files,
 for i in "$train" "$dev" "$raw"
@@ -117,11 +101,14 @@ test -s "$labels_json" || {
     spacy init labels ${cfg} "$labels"
 }
 
-# Pretraining
+# Pretraining, but not for small models.
 mkdir -p "$pretrain_d"
-test -s "$pretrain_model" || {
-    spacy pretrain "$cfg" "$pretrain_d" "${opts[@]}"
-}
+if [ "$size" != sm ]
+then
+    test -s "$pretrain_model" || {
+        spacy pretrain "$cfg" "$pretrain_d" "${opts[@]}"
+    }
+fi
 
 # Training
 mkdir -p "${output}"

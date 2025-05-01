@@ -11,20 +11,17 @@ set -e -o pipefail
 
 # Help message.
 usage="usage:  $0 {sm|md|lg}"
-
 [ "$1" == '-h' ] && {
     echo "$usage"
     exit 0
 }
 
-# Only one argument: model size.
-size="$1"
-
 # Constant paths
 raw=./data/raw.txt
 labels=./labels
 
-# Ensure vectors are here if needed.
+# Only one argument: model size.
+size="$1"
 case "$size" in
     sm);;
     md | lg) ./get_vectors.sh -s $size;;

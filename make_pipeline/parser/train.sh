@@ -9,40 +9,23 @@ set -e -o pipefail
 
 # Command line options
 size=
-raw=
-morph=
 
 # Files and directory
 train="train.spacy"
 dev=dev.spacy
 cfg=config.cfg
 output=./model
+raw=../data/raw.txt
 
-# Help
-usage="usage:
+# Help message.
+usage="usage:  $0 {sm|md|lg}"
+[ "$1" == '-h' ] && {
+    echo "$usage"
+    exit 0
+}
 
-$0 -s {sm|md|lg} -r RAW
-
-e.g.: $0 -s sm -r ../data/raw.txt
-"
-
-# Parse options
-while getopts s:r:h opt; do
-    case $opt in
-        s) size="$OPTARG";;
-        r) raw="$OPTARG";;
-        h)
-            echo "$usage"
-            exit 0;;
-        *)
-            echo "Unknown flag: $opt" >&2
-            exit 1;;
-    esac
-done
-
-# Ensure all required variables are set
-: ${size:?Missing -s size}
-: ${raw:?Missing -r raw}
+# Only one argument is needed: size.
+size="$1"
 
 # Ensure that 'train', 'dev', 'raw' data are files,
 for i in "$train" "$dev" "$raw"
@@ -57,12 +40,6 @@ done
 # (It needs to be the same static vectors.)
 # As the size needs to be known, it cannot be defined at the top.
 morph="../morphologizer/model/${size}/model-best"
-
-# Ensure that 'labels' is a directory.
-test -d "$labels" || {
-    echo "Not a directory: $labels" >&2
-    exit 1
-}
 
 # Configuration values depend on `-s SIZE`
 case "$size" in
@@ -117,6 +94,7 @@ opts+=(
 [ -s "$train" ] && [ -s "$dev" ] || ./get_data.sh
 
 # Labels
+mkdir -p "$labels"
 test -s "$labels_json" || {
     spacy init labels ${cfg} "$labels"
 }
