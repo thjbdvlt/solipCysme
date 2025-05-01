@@ -30,6 +30,7 @@ def main(directory: Path, fp_out: Path, max: int = 10000):
                         encoding="utf-8",
                     )
                     fo.write(s)
+                    fo.write('\n')
     fo.close()
 
 

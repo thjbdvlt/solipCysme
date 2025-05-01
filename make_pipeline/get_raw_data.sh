@@ -20,7 +20,7 @@ dir=data/2000romans19e20e-1.0.0
 raw=data/raw.txt
 
 # Number of paragraphs to extract
-n_par=10000
+n_par=100000
 
 
 # Get and extract data

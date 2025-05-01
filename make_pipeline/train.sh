@@ -20,16 +20,9 @@ usage="usage:  $0 {sm|md|lg}"
 # Only one argument: model size.
 size="$1"
 
-# Get full path, as the training requires to change directory.
-opts=(
-    -s  "$size"
-    -r  "$(realpath "$raw")"
-    -l  "$(realpath "$labels")"
-)
-
-# Ensure raw data is there
-raw=data/raw.txt
-[ -f "$raw" ] || ./get_raw_data.sh
+# Constant paths
+raw=./data/raw.txt
+labels=./labels
 
 # Ensure vectors are here if needed.
 case "$size" in
@@ -41,6 +34,16 @@ case "$size" in
         echo "Possible values are: sm, md, lg. " >&2
         exit 1;;
 esac
+
+# Get full path, as the training requires to change directory.
+opts=(
+    -s  "$size"
+    -r  "$(realpath "$raw")"
+    -l  "$(realpath "$labels")"
+)
+
+# Ensure raw data is there
+[ -f "$raw" ] || ./get_raw_data.sh
 
 # Train the trainable components.
 for i in morphologizer parser
