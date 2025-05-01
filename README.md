@@ -20,7 +20,11 @@ installation
 ------------
 
 ```bash
-pip install https://github.com/thjbdvlt/solipCysme/releases/download/v0.2.5/fr_solipcysme-0.2.5-py3-none-any.whl
+# Main pipeline
+pip install https://github.com/thjbdvlt/solipCysme/releases/download/0.2.6/fr_solipcysme_lg-0.2.6-py3-none-any.whl
+
+# Faster, less accurate, smaller model
+pip install https://github.com/thjbdvlt/solipCysme/releases/download/0.2.6/fr_solipcysme_sm-0.2.6-py3-none-any.whl
 ```
 
 usage
@@ -29,7 +33,7 @@ usage
 ```python
 import spacy
 
-nlp = spacy.load("fr_solipcysme")
+nlp = spacy.load("fr_solipcysme_sm")
 
 doc = nlp(
     "la MACHINE à (b)rouiller le temps s'est peuuut-etre déraillée..?"
