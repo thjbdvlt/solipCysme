@@ -15,6 +15,12 @@ usage="usage:  $0 {sm|md|lg}"
     echo "$usage"
     exit 0
 }
+size="$1"
+[ "$size" ] || {
+    echo "Missing argument: SIZE." >&2
+    echo "$usage"
+    exit 1
+}
 
 # Constant paths
 raw=./data/raw.txt

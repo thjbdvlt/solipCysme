@@ -16,12 +16,18 @@ dev=dev.spacy
 cfg=config.cfg
 output=./model
 raw=../data/raw.txt
+labels=../labels
 
 # Help message.
 usage="usage:  $0 {sm|md|lg}"
 [ "$1" == '-h' ] && {
     echo "$usage"
     exit 0
+}
+[ "$1" ] || {
+    echo "Missing argument: SIZE." >&2
+    echo "$usage"
+    exit 1
 }
 
 # Only one argument is needed: size.

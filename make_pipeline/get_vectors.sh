@@ -5,37 +5,21 @@
 set -e -o pipefail
 
 # Help message.
-usage="usage:  $0 -s {sm|md|lg}
-
-required:
-
--s   SIZE: Small (sm), Medium (md), Large (lg).
-"
-
-# No default value
-size=
-
-# Parse options.
-while getopts s:h opt; do
-    case $opt in
-        s) size="$OPTARG";;
-        h)
-            echo "$usage"
-            exit 0;;
-        *)
-            echo "Unknown flag: $opt" >&2
-            exit 1;;
-    esac
-done
-
-# Ensure a size is passed as argument.
-[ $size ] || {
-    echo "Missing argument (-s SIZE)." >&2
+usage="usage:  $0 {sm|md|lg}"
+[ "$1" == '-h' ] && {
+    echo "$usage"
+    exit 0
+}
+[ "$1" ] || {
+    echo "Missing argument: SIZE." >&2
+    echo "$usage"
     exit 1
 }
 
+size="$1"
+
 # Check value of $size
-case $size in
+case "$size" in
     sm) exit 0;; # Small models don't use vectors
     md | lg);;
     *)

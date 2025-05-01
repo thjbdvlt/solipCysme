@@ -24,24 +24,14 @@ usage="usage:  $0 {sm|md|lg}"
     echo "$usage"
     exit 0
 }
+[ "$1" ] || {
+    echo "Missing argument: SIZE." >&2
+    echo "$usage"
+    exit 1
+}
 
 # Only one argument is needed: size.
 size="$1"
-
-# Ensure that 'train', 'dev', 'raw' data are files,
-for i in "$train" "$dev" "$raw"
-do
-    test -s "$i" || {
-        echo "Not a file: $i" >&2
-        exit 1
-    }
-done
-
-# Ensure that 'labels' is a directory.
-test -d "$labels" || {
-    echo "Not a directory: $labels" >&2
-    exit 1
-}
 
 # Configuration values depend on `-s SIZE`
 case "$size" in
@@ -97,6 +87,7 @@ opts+=(
 test -s "$train" && test -s "$dev" || ./get_data.sh 
 
 # Labels
+mkdir -p "$labels"
 test -s "$labels_json" || {
     spacy init labels ${cfg} "$labels"
 }
