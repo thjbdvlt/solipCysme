@@ -39,7 +39,6 @@ esac
 opts=(
     -s  "$size"
     -r  "$(realpath "$raw")"
-    -l  "$(realpath "$labels")"
 )
 
 # Ensure raw data is there

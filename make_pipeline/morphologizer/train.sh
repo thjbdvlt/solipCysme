@@ -10,27 +10,26 @@ set -e -o pipefail
 # Command line options
 size=
 raw=
-labels=
 
 # Files and directory
 train="./narrafeats/train.spacy"
 dev=./narrafeats/dev.spacy
 cfg=config.cfg
 output=./model
+labels=../labels
 
 # Help
 usage="usage:
 
-$0 -s SIZE -r RAW
+$0 -s {sm|md|lg} -r RAW
 
-e.g.: -r raw.txt
+e.g.: $0 -s sm -r ../data/raw.txt
 "
 
 # Parse options
-while getopts s:l:v:r:h opt; do
+while getopts s:r:h opt; do
     case $opt in
         s) size="$OPTARG";;
-        l) labels="$OPTARG";;
         r) raw="$OPTARG";;
         h)
             echo "$usage"
@@ -44,9 +43,6 @@ done
 # Ensure all required variables are set
 : ${size:?Missing -s size}
 : ${raw:?Missing -r raw}
-: ${train:?Missing -t train}
-: ${dev:?Missing -d dev}
-: ${labels:?Missing -l labels}
 
 # Ensure that 'train', 'dev', 'raw' data are files,
 for i in "$train" "$dev" "$raw"

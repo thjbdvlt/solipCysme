@@ -22,6 +22,7 @@ raw=data/raw.txt
 # Number of paragraphs to extract
 n_par=100000
 
+mkdir -p data
 
 # Get and extract data
 [ -s "$raw" ] || {

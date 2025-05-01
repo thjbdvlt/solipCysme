@@ -21,9 +21,9 @@ output=./model
 # Help
 usage="usage:
 
-$0 -s SIZE -r RAW
+$0 -s {sm|md|lg} -r RAW
 
-e.g.: -r raw.txt
+e.g.: $0 -s sm -r ../data/raw.txt
 "
 
 # Parse options
