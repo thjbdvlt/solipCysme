@@ -56,13 +56,26 @@ opts=()
 
 # Medium/Large models require word vectors,
 # while Small requires vectors to be set to 'null'.
-if [ "$size" == md ] || [ "$size" == lg ]
-then
-    path_vec="../vectors/${size}"
-else
-    path_vec=null
-fi
-opts+=(--paths.vectors "$path_vec")
+# Thus, Small models are pretraing with another architecture.
+obj=pretraining.objective
+case "$size" in
+    md | lg)
+        opts+=(
+            --paths.vectors ../vectors/${size}
+            --${obj}.@architectures spacy.PretrainVectors.v1
+            --${obj}.maxout_pieces 3
+            --${obj}.hidden_size 300
+            --${obj}.loss cosine
+        );;
+    sm) 
+        opts+=(
+            --paths.vectors null
+            --${obj}.@architectures spacy.PretrainCharacters.v1
+            --${obj}.maxout_pieces 3
+            --${obj}.hidden_size 300
+            --${obj}.n_characters 4
+        );;
+esac
 
 # Make command line options
 component=morphologizer
@@ -80,7 +93,6 @@ opts+=(
     --${embed}.include_static_vectors=${static}
     --paths.dev=${dev}
     --paths.train=${train}
-    --corpora.pretrain.path=${raw}
 )
 
 # Get the data if its missing.
@@ -94,12 +106,9 @@ test -s "$labels_json" || {
 
 # Pretraining, but not for small models.
 mkdir -p "$pretrain_d"
-if [ "$size" != sm ]
-then
-    test -s "$pretrain_model" || {
-        spacy pretrain "$cfg" "$pretrain_d" "${opts[@]}"
-    }
-fi
+test -s "$pretrain_model" || {
+    spacy pretrain "$cfg" "$pretrain_d" "${opts[@]}"
+}
 
 # Training
 mkdir -p "${output}"

@@ -3,8 +3,8 @@
 all: package
 
 train:
-	./train.sh -s sm -r ./data/raw.txt
-	./train.sh -s lg -r ./data/raw.txt
+	./train.sh sm
+	./train.sh lg
 
 package:
 	./package.sh -s sm
@@ -15,4 +15,5 @@ release:
 
 clean:
 	rm -rf ./fr_solipcysme* ./fr_solipCysme* ./pipeline \
-		./data/2000romans19e20e-1.0.0 ./data/v1.0.0*
+		./data/2000romans19e20e-1.0.0 ./data/v1.0.0* \
+		./parser/pretrain ./morphologizer/pretrain
