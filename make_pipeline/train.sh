@@ -10,46 +10,15 @@
 set -e -o pipefail
 
 # Help message.
-usage="usage:  $0 -s {sm|md|lg} -r RAW [OPTIONS]
+usage="usage:  $0 {sm|md|lg}"
 
-required:
-
--s   SIZE: Small (sm), Medium (md), Large (lg).
--r   FILE: File with raw text for pretraining.
-"
-
-# Unset all variables.
-size=
-raw=
-vectors=vectors
-labels=labels
-
-# Parse options.
-while getopts s:r:h opt; do
-    case $opt in
-        s) size="$OPTARG";;
-        r) raw="$OPTARG";;
-        h)
-            echo "$usage"
-            exit 0;;
-        *)
-            echo "Unknown flag: $opt" >&2
-            exit 1;;
-    esac
-done
-
-ensure_exists() {
-    test -s "$1" || {
-        echo "File not found: $i" >&2
-        exit 1
-    }
+[ "$1" == '-h' ] && {
+    echo "$usage"
+    exit 0
 }
 
-# Ensure all required variables are set.
-: ${size:?Missing -s size}
-: ${raw:?Missing -r raw}
-ensure_exists "$raw"
-ensure_exists "$labels"
+# Only one argument: model size.
+size="$1"
 
 # Get full path, as the training requires to change directory.
 opts=(
@@ -58,11 +27,16 @@ opts=(
     -l  "$(realpath "$labels")"
 )
 
+# Ensure raw data is there
+raw=data/raw.txt
+[ -f "$raw" ] || ./get_raw_data.sh
+
 # Ensure vectors are here if needed.
-case $size in
+case "$size" in
     sm);;
     md | lg) ./get_vectors.sh -s $size;;
     *)
+        echo "$usage"
         echo "Unknown value for size: $size" >&2
         echo "Possible values are: sm, md, lg. " >&2
         exit 1;;

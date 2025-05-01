@@ -14,4 +14,5 @@ release:
 	./release.sh
 
 clean:
-	rm -rf ./fr_solipcysme* ./fr_solipCysme* ./pipeline
+	rm -rf ./fr_solipcysme* ./fr_solipCysme* ./pipeline \
+		./data/2000romans19e20e-1.0.0 ./data/v1.0.0*
