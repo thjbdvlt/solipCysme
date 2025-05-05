@@ -38,12 +38,14 @@ case "$size" in
     sm | md)
         width=128
         depth=3
-        rows=[2000,500,1000,2000]
+        features='["NORM","SENT_START"]'
+        rows=[2000,500,500,1000,2000]
         static=false;;
     lg)
         width=256
         depth=4
-        rows=[4000,1000,2000,4000]
+        features='["NORM","SENT_START"]'
+        rows=[2000,1000,1000,2000,4000]
         static=true;;
     *)
         echo "Unknown value for -s: $size" >&2
@@ -89,6 +91,7 @@ opts+=(
     --paths.init_tok2vec=${pretrain_model}
     --${encode}.width=${width}
     --${encode}.depth=${depth}
+    --${embed}.features=${features}
     --${embed}.rows=${rows}
     --${embed}.include_static_vectors=${static}
     --paths.dev=${dev}

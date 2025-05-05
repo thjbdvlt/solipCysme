@@ -7,11 +7,8 @@ solipCysme
 | --- | --- |
 | __Language__ | french |
 | __Name__ | `fr_solipcysme` |
-| __Version__ | `0.2.5` |
-| __spaCy__ | `==3.8.4` |
 | __Default Pipeline__ | `jusqucy_tokenizer`,`commecy_normalizer`, `jusqucy_normalizer`, `pretagger_hunspell`,`morphologizer`, `viceverser_lemmatizer`, `parser` |
 | __Components__ | [jusqucy_tokenizer](https://github.com/thjbdvlt/jusquci), [jusqucy_normalizer](https://github.com/thjbdvlt/jusquci), [commecy_normalizer](https://github.com/thjbdvlt/commecy), `morphologizer`, [viceverser_lemmatizer](https://github.com/thjbdvlt/spacy-viceverser), `parser` |
-| __Vectors__ | 669785 keys, 6697856 unique vectors (100 dimensions) |
 | __Sources__ | Corpus [narraFEATS](https://github.com/thjbdvlt/corpus-narraFEATS) (morphologizer), [Universal Dependencies](https://universaldependencies.org/fr/) (parser), [french-word-vectors](https://github.com/thjbdvlt/french-word-vectors) (vectors)|
 | __License__ | [GPL](https://www.gnu.org/licenses/gpl-3.0.html) |
 | __Author__ | [thjbdvlt](https://github.com/thjbdvlt) |

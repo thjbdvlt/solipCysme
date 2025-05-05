@@ -28,8 +28,8 @@ unzip() {
     untar
 }
 download() {
-    local version=v0.1.1
-    wget https://github.com/thjbdvlt/corpus-narraFEATS/releases/download/$version/narrafeats.tar.gz
+    # wget https://github.com/thjbdvlt/corpus-narraFEATS/releases/download/$version/narrafeats.tar.gz
+    wget https://github.com/thjbdvlt/corpus-narraFEATS/releases/latest/download/narrafeats.tar.gz
     unzip
 }
 

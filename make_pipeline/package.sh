@@ -26,7 +26,7 @@ optional:
 size=
 
 # Default values
-name=solipCysme
+name=solipcysme
 output=pipeline
 meta=meta.json
 raw=data/raw.txt
