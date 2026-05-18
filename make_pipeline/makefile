@@ -3,7 +3,7 @@
 all: package
 
 sm lg:
-	./train.sh $@
+	./train.sh -s $@
 	./package.sh -s $@
 
 train package:
