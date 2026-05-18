@@ -7,8 +7,8 @@ sm lg:
 	./package.sh -s $@
 
 train package:
-	./$@.sh sm
-	./$@.sh lg
+	./$@.sh -s sm
+	./$@.sh -s lg
 
 release:
 	./$@.sh

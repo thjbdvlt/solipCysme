@@ -3,12 +3,12 @@
 opts := -r ../data/raw.txt -v ../vectors
 
 all: clean
-	train.sh -s sm $(opts)
-	train.sh -s lg $(opts)
+	./train.sh sm $(opts)
+	./train.sh lg $(opts)
 
 train: clean
 	read -p 'size?' size \
-		&& train.sh $(opts) -s $${size}
+		&& ./train.sh $(opts) $${size}
 
 test:
 	read -p 'size?' size \
