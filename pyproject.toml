@@ -7,7 +7,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "spacy",
-    "jusqucy @git+https://github.com/thjbdvlt/jusquci",
+    "jusqucy @git+https://github.com/thjbdvlt/jusquci.git#subdirectory=python",
     "commecy @git+https://github.com/thjbdvlt/commecy",
     "viceverser @git+https://github.com/thjbdvlt/spacy-viceverser",
 ]

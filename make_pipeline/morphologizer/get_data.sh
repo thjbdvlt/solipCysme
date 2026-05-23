@@ -30,6 +30,7 @@ unzip() {
 download() {
     # wget https://github.com/thjbdvlt/corpus-narraFEATS/releases/download/$version/narrafeats.tar.gz
     wget https://github.com/thjbdvlt/corpus-narraFEATS/releases/latest/download/narrafeats.tar.gz
+    # FIXME: this file doesn't exists. must clone the repository instead.
     unzip
 }
 
